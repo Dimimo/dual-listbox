@@ -47,7 +47,7 @@
         "karma-spec-reporter": "latest",
         "karma-webpack": "latest",
         "postcss": "latest",
-        "webpack": "4.46.0",
+        "webpack": "^5.0.0",
         "webpack-cli": "latest",
         "webpack-node-externals": "latest",
         "webpack-stream": "^6.1.2"
