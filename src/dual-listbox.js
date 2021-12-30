@@ -189,6 +189,16 @@ class DualListbox {
             list.removeChild(list.firstChild);
         }
 
+        elements.sort(function(a, b) {
+            if (a.innerText < b.innerText) {
+                return -1;
+            }
+            if (a.innerText > b.innerText) {
+                return 1;
+            }
+            return 0;
+        })
+
         for (let i = 0; i < elements.length; i++) {
             let listItem = elements[i];
             list.appendChild(listItem);
@@ -230,9 +240,9 @@ class DualListbox {
     }
 
     /**
-     * Action when double clicked on a listItem.
+     * Action when clicked on a listItem.
      */
-    _actionItemDoubleClick(listItem, event = null) {
+    _actionItemClick(listItem, event = null) {
         if (event) {
             event.preventDefault();
             event.stopPropagation();
@@ -243,12 +253,13 @@ class DualListbox {
         } else {
             this.addSelected(listItem);
         }
+        this.search_left.value = this.search_right.value = "";
     }
 
     /**
      * Action when single clicked on a listItem.
      */
-    _actionItemClick(listItem, dualListbox, event = null) {
+    /* _actionItemClick(listItem, dualListbox, event = null) {
         if (event) {
             event.preventDefault();
         }
@@ -267,7 +278,7 @@ class DualListbox {
         } else {
             listItem.classList.add(SELECTED_MODIFIER);
         }
-    }
+    } */
 
     /**
      * @Private
@@ -294,8 +305,13 @@ class DualListbox {
      * @param {Object} listItem
      */
     _addClickActions(listItem) {
-        listItem.addEventListener('dblclick', (event) => this._actionItemDoubleClick(listItem, event));
-        listItem.addEventListener('click', (event) => this._actionItemClick(listItem, this.dualListbox, event));
+        listItem.addEventListener("click", (event) => {
+            //was dblclick
+            this._actionItemClick(listItem, event);
+        });
+        /* listItem.addEventListener('click', (event) => {
+            this._actionItemClick(listItem, this.dualListbox, event)
+        }); */
         return listItem;
     }
 
