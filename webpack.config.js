@@ -3,11 +3,13 @@ const nodeExternals = require('webpack-node-externals');
 const paths = require('./build/paths');
 
 
-let isProduction = process.env.NODE_ENV === 'production';
+/* let isProduction = process.env.NODE_ENV === 'production';
 
 if (argv.production) {
     isProduction = true;
-}
+} */
+
+isProduction = true;
 
 
 module.exports = {
